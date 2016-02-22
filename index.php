@@ -41,29 +41,61 @@
                     $deck[$i] = $temp;
                 }
             }
+            class Player
+            {
+                private $name = "";
+                private $picture = "";
+                private $numCards = 0;
+                private $hand = array();
+                private $score = 0;
+                
+                function __construct($n, $c)
+                {
+                    $this->name = $n;
+                    $this->numCards = $c;
+                }
+                
+                function addCard($c)
+                {
+                    $this->hand[] = $c;
+                }
+                function finalize()
+                {
+                    for($i = 0, $j = count($hand); $i < $j; ++$i)
+                    {
+                        $this->score += $hand[$i]->getCardValue();
+                    }
+                }
+                function getScore()
+                {
+                    return $this->score;
+                }
+            }
             
-            $array = array();
+            $deckOfCards = array();
             for($i = 1; $i <= 13; ++$i)
             {
-                $array[] = new Card($i, "clubs");
+                $deckOfCards[] = new Card($i, "clubs");
             }
             for($i = 13; $i >= 1; --$i)
             {
-                $array[] = new Card($i, "diamonds");
+                $deckOfCards[] = new Card($i, "diamonds");
             }
             for($i = 1; $i <= 13; ++$i)
             {
-                $array[] = new Card($i, "spades");
+                $deckOfCards[] = new Card($i, "spades");
             }
             for($i = 13; $i >= 1; --$i)
             {
-                $array[] = new Card($i, "hearts");
+                $deckOfCards[] = new Card($i, "hearts");
             }
-            shuffleDeck($array);
+            shuffleDeck($deckOfCards);
             
-            for($i = 0, $j = count($array); $i < $j; ++$i)
+            $players = array();
+            
+            for($i = 0, $j = count($deckOfCards); $i < $j; ++$i)
             {
-                echo "<img src=\"" . $array[$i]->getImage() . "\" />\n";
+                echo "<img src=\"" . $deckOfCards[$i]->getImage() . "\" />\n";
             }
         ?>
     </body>
