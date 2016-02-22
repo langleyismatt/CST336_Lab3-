@@ -21,9 +21,24 @@
                 {
                     return "images/" . $this->suit . "/" . $this->number . ".png";
                 }
-                function getValue()
+                function getCardValue()
                 {
                     return $this->number;
+                }
+                function getCardName()
+                {
+                    return $this->number . " of " . $this->suit;
+                }
+            }
+            function shuffleDeck(&$deck)
+            {
+                $temp;
+                for($i = count($deck) - 1; $i > 0; --$i)
+                {
+                    $j = rand() % ($i + 1);
+                    $temp = $deck[$j];
+                    $deck[$j] = $deck[$i];
+                    $deck[$i] = $temp;
                 }
             }
             
@@ -44,6 +59,7 @@
             {
                 $array[] = new Card($i, "hearts");
             }
+            shuffleDeck($array);
             
             for($i = 0, $j = count($array); $i < $j; ++$i)
             {
