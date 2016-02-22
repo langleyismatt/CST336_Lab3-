@@ -6,6 +6,17 @@
     </head>
     <body>
         <?php
+            class Card
+            {
+                private $number;
+                private $suit;
+                
+                function __constructor($n, $s)
+                {
+                    $this->number = $n;
+                    $this->suit = $s;
+                }
+            }
         ?>
     </body>
 </html>
