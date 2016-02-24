@@ -65,11 +65,11 @@
                 }
                 function finalize()
                 {
-                    $this->score = 0;
                     for($i = 0, $j = count($this->hand); $i < $j; ++$i)
                     {
                         $this->score += $this->hand[$i]->getCardValue();
                     }
+                    return $this->score;
                 }
                 function getScore()
                 {
@@ -109,6 +109,8 @@
             
             $playerNames = ["Jill", "Maria", "John", "Tom"];
             
+            $topScore = 0;
+            
             for($i = 0; $i < 4; ++$i)
             {
                 $players[] = new Player($playerNames[$i], rand() % 3 + 4);
@@ -116,7 +118,11 @@
                 {
                     $players[$i]->addCard($deckOfCards[$topDeck--]);
                 }
-                $players[$i]->finalize();
+                $temp = $players[$i]->finalize();
+                if($temp > $topScore && $temp <= 42)
+                {
+                    $topScore = $temp;
+                }
             }
             
             for($i = 0, $j = count($players); $i < $j; ++$i)
@@ -126,7 +132,12 @@
                 {
                     echo "<img src=\"" . $players[$i]->getHand()[$k]->getImage() . "\" />";
                 }
-                echo "\n\t\t<label>" . $players[$i]->getScore() . "</label>\n\t</div>\n\t";
+                echo "\n\t\t<label>" . $players[$i]->getScore() . "</label>";
+                if($players[$i]->getScore() == $topScore)
+                {
+                    echo "<label>" . $players[$i]->getName() . " Wins!</label>";
+                }
+                echo "\n\t</div>\n\t";
             }
         ?>
     </body>
