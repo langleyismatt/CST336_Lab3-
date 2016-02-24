@@ -59,6 +59,10 @@
                 {
                     $this->hand[] = $c;
                 }
+                function getNumCards()
+                {
+                    return $this->numCards;
+                }
                 function finalize()
                 {
                     for($i = 0, $j = count($hand); $i < $j; ++$i)
@@ -69,6 +73,14 @@
                 function getScore()
                 {
                     return $this->score;
+                }
+                function getName()
+                {
+                    return $this->name;
+                }
+                function getHand()
+                {
+                    return $this->hand;
                 }
             }
             
@@ -90,12 +102,29 @@
                 $deckOfCards[] = new Card($i, "hearts");
             }
             shuffleDeck($deckOfCards);
+            $topDeck = count($deckOfCards) - 1;
             
             $players = array();
             
-            for($i = 0, $j = count($deckOfCards); $i < $j; ++$i)
+            $playerNames = ["Jill", "Maria", "John", "Tom"];
+            
+            for($i = 0; $i < 4; ++$i)
             {
-                echo "<img src=\"" . $deckOfCards[$i]->getImage() . "\" />\n";
+                $players[] = new Player($playerNames[$i], rand() % 3 + 4);
+                for($j = 0; $j < $players[$i]->getNumCards(); ++$j)
+                {
+                    $players[$i]->addCard($deckOfCards[$topDeck--]);
+                }
+                $players[$i]->finalize();
+            }
+            
+            for($i = 0, $j = count($players); $i < $j; ++$i)
+            {
+                echo "<div>" . $players[$i]->getName();
+                for($k = 0, $l = $players[$i]->getNumCards(); $k < $l; ++$k)
+                {
+                    echo "<img src=\"" . $players[$i]->getHand()[$k]->getImage() . "\" />";
+                }
             }
         ?>
     </body>
