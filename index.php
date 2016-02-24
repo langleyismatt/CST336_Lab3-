@@ -65,9 +65,10 @@
                 }
                 function finalize()
                 {
-                    for($i = 0, $j = count($hand); $i < $j; ++$i)
+                    $this->score = 0;
+                    for($i = 0, $j = count($this->hand); $i < $j; ++$i)
                     {
-                        $this->score += $hand[$i]->getCardValue();
+                        $this->score += $this->hand[$i]->getCardValue();
                     }
                 }
                 function getScore()
@@ -120,11 +121,12 @@
             
             for($i = 0, $j = count($players); $i < $j; ++$i)
             {
-                echo "<div>" . $players[$i]->getName();
+                echo "<div>\n\t\t" . $players[$i]->getName() . "\n\t\t";
                 for($k = 0, $l = $players[$i]->getNumCards(); $k < $l; ++$k)
                 {
                     echo "<img src=\"" . $players[$i]->getHand()[$k]->getImage() . "\" />";
                 }
+                echo "\n\t\t<label>" . $players[$i]->getScore() . "</label>\n\t</div>\n\t";
             }
         ?>
     </body>
