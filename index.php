@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Lab 3 - Morgan Johnson & Matthew Langley test</title>
+        <title>Lab 3 - Morgan Johnson & Matthew Langley</title>
         <link type="css/text" rel="stylesheet" href="css/styles.css">
     </head>
     <body>
+         <title1>
+            <center1>
+                Silverjack!
+            </center1>
+        </title1>
         <?php
             class Card
             {
@@ -79,6 +84,10 @@
                 {
                     return $this->name;
                 }
+                 function getPlayerPic()
+                {
+                    return "images/players/" . $this->picture;
+                }
                 function getHand()
                 {
                     return $this->hand;
@@ -109,6 +118,9 @@
             
             $playerNames = ["Jill", "Maria", "John", "Tom"];
             
+            $playerPics = ["<img src=images/players/0.png style=width:72px;height:96px>", "<img src=images/players/1.png style=width:72px;height:96px>", 
+                            "<img src=images/players/2.png style=width:72px;height:96px>", "<img src=images/players/3.png style=width:72px;height:96px>"];
+            
             $topScore = 0;
             
             for($i = 0; $i < 4; ++$i)
@@ -124,21 +136,33 @@
                     $topScore = $temp;
                 }
             }
-            
+            echo "<center1>";
             for($i = 0, $j = count($players); $i < $j; ++$i)
             {
-                echo "<div>\n\t\t" . $players[$i]->getName() . "\n\t\t";
+                echo "<nameLabel>\n\t\t" . $players[$i]->getName() . "'s Hand<pre></pre>\n\t\t";
+                                           echo $playerPics[$i];
                 for($k = 0, $l = $players[$i]->getNumCards(); $k < $l; ++$k)
                 {
                     echo "<img src=\"" . $players[$i]->getHand()[$k]->getImage() . "\" />";
                 }
-                echo "\n\t\t<label>" . $players[$i]->getScore() . "</label>";
+
+                echo "&nbsp&nbspScore \n\t\t" . $players[$i]->getScore() . "";
+                echo "<pre></pre>";
                 if($players[$i]->getScore() == $topScore)
                 {
-                    echo "<label>" . $players[$i]->getName() . " Wins!</label>";
+                    $echo11 = "" . $players[$i]->getName() . " Wins!";
                 }
                 echo "\n\t</div>\n\t";
             }
         ?>
+        <winner>
+            <center1>
+                <marquee behavior="alternate">
+                    <?php 
+                        echo "$echo11";
+                    ?>
+                </marquee>
+            </center1>
+        </winner>
     </body>
 </html>
