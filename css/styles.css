@@ -9,6 +9,7 @@ center1 {
     justify-content:center;
     align-items:center;
 }
+
 label {
     font-size:35px;
     color:darkblue;
@@ -26,4 +27,26 @@ winner {
     text-shadow: 1px 1px 2px black, 0 0 5px darkblue;
 }
 
+b {
+    font-weight:bolder;
+}
 
+marquee {
+    color:black;
+}
+
+img {
+    height:96px;
+    width:72px;
+}
+
+nameLabel {
+    font-size:15px;
+    font-weight:bold;
+}
+
+textb {
+    font-size:15px;
+    text-decoration:none;
+    font-weight:bold;
+}
